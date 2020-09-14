@@ -120,3 +120,50 @@ let p = {
     lastName : 'Srivastava'
 };
 fullName(p);
+
+
+//classes and inheritance in typeScript
+
+//using class keyword followed by class name
+
+class Employee {
+    protected empName : string;
+
+    constructor(name: string){
+        this.empName = name;
+    }
+    showName(){
+        console.log(`Hi you are ${this.empName}`);
+    }
+}
+
+let emp1 = new Employee('Neeraj');
+emp1.showName();
+//console.log(emp1.empName); //not acessible due to private
+
+//for inheriting the class properties we use extend keyword
+
+class Manager extends Employee {
+    constructor(managerName: string){
+        //if manager is created with the constructor we use the parents constructor to assign the value
+        super(managerName);
+    }
+    assignWork(){
+        console.log(`Manager can assign tasks to individuals under them.`);
+    }
+}
+//objects of manager class
+let m1 = new Manager('Manager Sahab');
+m1.assignWork();
+m1.showName();
+// console.log(m1.empName); //not accessible outside the child class and parent class
+
+
+//access modifiers public, protected, private
+//by default all are public 
+//private means only acessible inside the class(only by methods inside the class)
+//if you want access to properties within your class and all your derieved classes you use protected keyword
+//it will show error if you make the empName private or protected check them out
+
+
+

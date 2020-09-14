@@ -1,4 +1,17 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 exports.__esModule = true;
 var message = 'Hello World changed now';
 console.log(message);
@@ -94,3 +107,39 @@ var p = {
     lastName: 'Srivastava'
 };
 fullName(p);
+//classes and inheritance in typeScript
+//using class keyword followed by class name
+var Employee = /** @class */ (function () {
+    function Employee(name) {
+        this.empName = name;
+    }
+    Employee.prototype.showName = function () {
+        console.log("Hi you are " + this.empName);
+    };
+    return Employee;
+}());
+var emp1 = new Employee('Neeraj');
+emp1.showName();
+//console.log(emp1.empName); //not acessible due to private
+//for inheriting the class properties we use extend keyword
+var Manager = /** @class */ (function (_super) {
+    __extends(Manager, _super);
+    function Manager(managerName) {
+        //if manager is created with the constructor we use the parents constructor to assign the value
+        return _super.call(this, managerName) || this;
+    }
+    Manager.prototype.assignWork = function () {
+        console.log("Manager can assign tasks to individuals under them.");
+    };
+    return Manager;
+}(Employee));
+//objects of manager class
+var m1 = new Manager('Manager Sahab');
+m1.assignWork();
+m1.showName();
+// console.log(m1.empName); //not accessible outside the child class and parent class
+//access modifiers public, protected, private
+//by default all are public 
+//private means only acessible inside the class(only by methods inside the class)
+//if you want access to properties within your class and all your derieved classes you use protected keyword
+//it will show error if you make the empName private or protected check them out
